@@ -6,33 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="./assets/css.css">
 </head>
 
 <body>
     <header>Weather Dashboard</header>
-    <div>
-        <form>
-            <div>
-                <input>
-                <button>Search</button>
-
-
-
-
-                </inpput>
-
-
-
-
+    <div class="row">
+        <main class="flex-row justify-space-between">
+            <div class="col-12 col-md-4"></div>
+            <div class="card">
+                <label for="search-city"> Search for a City:</label>
+                <form id="user-form" class="card-body">
+                    <input id="search-city" class="form-control"></input>
+                    <button id="search-button" type="submit" class="btn btn-primary">Search</button>
+                </form>
             </div>
-
-
-
-
-
-
-        </form>
+            <div class="col-12 col-md-8">
+                <div id="current-forcast"></div>
+                <div id="5-day-weather"></div>
+            </div>
+        </main>
     </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
