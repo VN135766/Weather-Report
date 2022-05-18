@@ -15,8 +15,8 @@ Client can also see weather conditions for the next 5 days.
 [Link to Github Repo](https://github.com/VN135766/Weather-Report.git)
 
 
-## Demo
-![Alt text](https://github.com/VN135766/Challenege-5-Calender/blob/main/ezgif.com-gif-maker.gif)
+## Screenshot
+![Alt text](https://github.com/VN135766/Weather-Report/blob/main/Screenshot%20(48).png)
 
 
 ## Questions
