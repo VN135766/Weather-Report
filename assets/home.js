@@ -27,26 +27,8 @@ function weatherNow(city) {
         $(currentWSpeed).html(windsmph + "MPH");
         UVIndex(response.coord.lon, response.coord.lat);
         forecast(response.id);
-        if (response.cod == 200) {
-            sCity = JSON.parse(localStorage.getItem("cityname"));
-            console.log(sCity);
-            if (sCity == null) {
-                sCity = [];
-                sCity.push(city.toUpperCase()
-                );
-                localStorage.setItem("cityname", JSON.stringify(sCity));
-                addToList(city);
-            }
-            else {
-                if (find(city) > 0) {
-                    sCity.push(city.toUpperCase());
-                    localStorage.setItem("cityname", JSON.stringify(sCity));
-                    addToList(city);
-                }
-            }
-        }
-    })
-};
+    })};
+
 
 function UVIndex(ln, lt) {
     var uvqURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lt + "&lon=" + ln;
@@ -55,6 +37,31 @@ function UVIndex(ln, lt) {
         method: "GET"
     }).then(function (response) {
         $(currentUvindex).html(response.value);
+    });
+}
+
+function forecast(cityid) {
+    var dayover = false;
+    var queryforcastURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityid + "&appid=" + APIKey;
+    $.ajax({
+        url: queryforcastURL,
+        method: "GET"
+    }).then(function (response) {
+
+        for (i = 0; i < 5; i++) {
+            var date = new Date((response.list[((i + 1) * 8) - 1].dt) * 1000).toLocaleDateString();
+            var iconcode = response.list[((i + 1) * 8) - 1].weather[0].icon;
+            var iconurl = "https://openweathermap.org/img/wn/" + iconcode + ".png";
+            var tempK = response.list[((i + 1) * 8) - 1].main.temp;
+            var tempF = (((tempK - 273.5) * 1.80) + 32).toFixed(2);
+            var humidity = response.list[((i + 1) * 8) - 1].main.humidity;
+
+            $("#futureDate" + i).html(date);
+            $("#futureImg" + i).html("<img src=" + iconurl + ">");
+            $("#futureTemp" + i).html(tempF + "&#8457");
+            $("#futureHumidity" + i).html(humidity + "%");
+        }
+
     });
 }
 
